@@ -39,5 +39,13 @@ does not delete diagnostic files left by earlier failures.
 
 ## Hosted CI
 
-The Ubuntu execution will be recorded after its reports are verified. A published
-workflow alone is not a passing CI result.
+[The first GitHub Actions execution](https://github.com/baruth91/selenium-java-qa-case-study/actions/runs/40706015776)
+passed on 2026-10-28 at code revision `a243db9`: **6 tests, 0 failures, 0 errors,
+0 skipped**. The downloaded Surefire XML records 17.449 seconds for the suite.
+The full job took 1 minute 32 seconds including tool setup, the external app build,
+the test run and artifact upload.
+
+The runner used Ubuntu 24.04, Temurin 21 and headless Chrome. It built the pinned
+Petclinic jar, started it on loopback and executed all six original cases. Reports
+and the application log were uploaded as `selenium-owner-evidence`, retained for
+seven days. No case was skipped, stubbed or retried to obtain this result.

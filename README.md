@@ -4,6 +4,12 @@ An English-language educational QA project by [baruth91](https://github.com/baru
 shared with the QA community. Six independently authored browser cases connect
 customer-record risks to Java code, explicit waits and repeatable execution.
 
+## Verified first increment
+
+All **six original cases passed on Windows and Ubuntu**, using headless Chrome.
+[View the passing GitHub Actions run](https://github.com/baruth91/selenium-java-qa-case-study/actions/runs/40706015776)
+and the [validation record](docs/validation.md) for exact scope and results.
+
 ## What is being tested?
 
 A veterinary clinic needs reliable owner contact records. Can a staff member
