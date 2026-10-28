@@ -1,0 +1,40 @@
+name: Selenium owner workflow checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: selenium-case-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  owner-workflows:
+    name: Six Java and Selenium cases
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Download and build the pinned Petclinic application
+        run: java scripts/PrepareApp.java
+      - name: Run all six original browser cases
+        run: sh mvnw -B test
+      - name: Preserve test reports and failure evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: selenium-owner-evidence
+          path: |
+            target/surefire-reports/
+            target/evidence/
+          retention-days: 7
